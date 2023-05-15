@@ -1,0 +1,36 @@
+<form [formGroup]="form" (ngSubmit)="login()" *ngIf="!token">
+  <input type="text" placeholder="userName" formControlName="userName">
+  <input type="text" placeholder="password" formControlName="password">
+  <input type="submit" value="Loguear">
+</form>
+
+<br>
+
+<form [formGroup]="form_register" (ngSubmit)="NewUser()" *ngIf="!token" [ngClass]="{'hello': login ? true : 'Perro'}">
+  <input type="text" placeholder="userName" formControlName="userName">
+  <input type="text" placeholder="user" formControlName="user">
+  <input type="text" placeholder="password" formControlName="password">
+  <input type="submit" value="Registrar">
+</form>
+
+<main *ngIf="token">
+  <!-- Sending an note -->
+  <form [formGroup]="noteForm" (ngSubmit)="setNewNote()">
+    <input type="text" formControlName="content" placeholder="Content">
+    <input type="checkbox" formControlName="important">
+    <input type="submit" value="Send">
+  </form>
+
+  <br>
+
+  <button (click)="Logout()">Log out</button>
+
+  <h1>Notes:</h1>
+
+  <pre *ngFor="let note of notes">
+    {{note.date | date: 'dd/MM/yyyy HH:mm a'}}
+    Dueño: {{note.user.user}}
+    {{note.content}}
+  </pre>
+
+</main>
