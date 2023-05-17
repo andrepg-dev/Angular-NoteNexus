@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --orange: #ff7e67;
+  --white-green: #e4f9f5;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+.btn {
+  outline: none;
+  background: none;
+  border-style: outset;
+  padding: 1rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.1s;
+  user-select: none;
+  opacity: 0.8;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}

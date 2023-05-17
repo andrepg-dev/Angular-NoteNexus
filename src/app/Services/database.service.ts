@@ -1,8 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, finalize } from 'rxjs';
 import { enviroment } from 'src/environments/environment';
-import { NewUser, NoteInterface, UserInterface } from '../Interfaces/interface';
+import {
+  Login,
+  NewUser,
+  NoteInterface,
+  UserInterface,
+} from '../Interfaces/interface';
 
 @Injectable({
   providedIn: 'root',
@@ -15,24 +20,43 @@ export class DataBaseService {
 
   constructor(private http: HttpClient) {}
 
-  login(data: any): Observable<UserInterface> {
+  // Headers
+  getHeaders() {
+    this.TOKEN = window.localStorage.getItem('token');
+    const headers = {
+      authorization: `Bearer ${this.TOKEN}`,
+    };
+    return headers;
+  }
+
+  // User methods
+  NewUser(form: NewUser): Observable<NewUser> {
+    const body = {
+      userName: form.userName,
+      user: form.user,
+      password: form.password,
+    };
+
+    return this.http.post<NewUser>(this.URL_REGISTER, body);
+  }
+
+  login(data: Login) {
     const body = {
       userName: data.userName,
       password: data.password,
     };
 
-    return this.http.post<UserInterface>(this.URL_LOGIN, body);
+    return this.http
+      .post<UserInterface>(this.URL_LOGIN, body)
+      .subscribe((res) => {
+        window.localStorage.setItem('token', res.token);
+      });
   }
 
+  // Notes methods
   Get(): Observable<NoteInterface[]> {
-    this.TOKEN = window.localStorage.getItem('token');
-
-    const autorization = {
-      authorization: `Bearer ${this.TOKEN}`,
-    };
-
     return this.http.get<NoteInterface[]>(this.URL_NOTES, {
-      headers: autorization,
+      headers: this.getHeaders(),
     });
   }
 
@@ -42,26 +66,24 @@ export class DataBaseService {
       important: form.important,
     };
 
-    const autorization = {
-      authorization: `Bearer ${this.TOKEN}`,
-    };
-
     return this.http.post<NoteInterface>(this.URL_NOTES, body, {
-      headers: autorization,
+      headers: this.getHeaders(),
     });
   }
 
-  DeleteToken(){
-    return window.localStorage.removeItem('token');
+  Delete(noteID: string): Observable<NoteInterface> {
+    return this.http.delete<NoteInterface>(`${this.URL_NOTES}/${noteID}`, {
+      headers: this.getHeaders(),
+    });
   }
 
-  NewUser(form: NewUser): Observable<NewUser>{
+  update(form: any, noteID: string): Observable<NoteInterface> {
     const body = {
-      userName: form.userName,
-      user: form.user,
-      password: form.password,
+      content: form.content,
     };
 
-    return this.http.post<NewUser>(this.URL_REGISTER, body);
+    return this.http.put<NoteInterface>(`${this.URL_NOTES}/${noteID}`, body, {
+      headers: this.getHeaders(),
+    });
   }
 }

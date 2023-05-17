@@ -1,0 +1,35 @@
+<div class="presentacion">
+  <app-menu-bar></app-menu-bar>
+
+  <div class="icon-scroll-down">
+    <a href="#two"><i class="bi bi-arrow-down-circle-fill"></i></a>
+  </div>
+
+  <div class="img_presentation">
+    <div class="move" data-aos="fade-up" data-aos-easing="ease-in-sine">
+      <h2 class="title">Your Space of Thoughts.</h2>
+      <button class="btn btn-start">Start Creating</button>
+    </div>
+  </div>
+
+  <div class="content" id="two">
+    <h2 [align]="'center'" class="title">¿How can i Create an note?</h2>
+
+    <section>
+      <div class="list">
+        <h1 class="title" *ngFor="let step of steps" (click)="ShowStep(step)"
+          [ngClass]="{'Step-Active': step.description == selectedStep?.description}">
+          {{step.title}}
+        </h1>
+      </div>
+
+      <div class="steps">
+        <img [src]="selectedStep?.img">
+        <h2>
+          {{selectedStep?.description}}
+        </h2>
+      </div>
+    </section>
+  </div>
+
+</div>

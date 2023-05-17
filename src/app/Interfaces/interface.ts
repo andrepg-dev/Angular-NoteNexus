@@ -24,3 +24,8 @@ export interface NewUser {
   userName: string;
   password: string;
 }
+
+export interface Login {
+  userName: string;
+  password: string;
+}
