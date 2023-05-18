@@ -7,8 +7,8 @@
   width: 100%;
   height: 100vh;
   background: #fff;
-  background-image: url("../../../assets/minimalist-wallpapers-fondos-de-pantalla-minimalista-celular-4k-28-_-Imágenes-Bonitas-Gratis.png"),
-    url("../../../assets/descarga.png");
+  background-image: url("../../../../assets/minimalist-wallpapers-fondos-de-pantalla-minimalista-celular-4k-28-_-Imágenes-Bonitas-Gratis.png"),
+    url("../../../../assets/descarga.png");
   background-position: left, right bottom;
   background-repeat: no-repeat;
   background-size: contain;
@@ -22,6 +22,7 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   font-family: "Righteous", cursive;
+  color: white;
 }
 
 .icon-scroll-down {
@@ -30,7 +31,7 @@
   right: 1.5rem;
 }
 
-.icon-scroll-down a{
+.icon-scroll-down a {
   text-decoration: none;
 }
 
@@ -41,52 +42,77 @@
   display: grid;
   place-items: center;
   scroll-behavior: smooth;
+  color: #4C3D3D;
 }
 
 .icon-scroll-down:hover {
   transform: scale(1.1);
 }
 
-.content{
+.content {
   width: 100%;
   padding: 50px 80px;
-  background: #ddd;
+  background: var(--green);
   box-sizing: border-box;
   transition: 0.5s;
 }
 
-.content section{
+.content-title {
   width: 100%;
-  height: 80vh;
-  color: white;
   display: flex;
-  overflow: auto;  
+  justify-content: center;
+  align-items: center;
 }
 
-.content section .list{
+.content-title .title {
+  position: relative;
+  width: fit-content;
+  letter-spacing: 3px;
+}
+/* 
+.content-title .title::after{
+  content: '';
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  background: black;
+} */
+
+.content section {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  overflow: auto;
+}
+
+.content section .list {
   height: 100%;
   width: 45%;
   box-sizing: border-box;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  color: gray;
+  color: white;
   font-size: 20px;
 }
 
-.content section .title{
+.content section .title {
   cursor: pointer;
 }
 
-.content section .title:hover{
-  color: white;
+.tutorial {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-.Step-Active{
-  color: blueviolet;
+.Step-Active {
+  color: #4C3D3D;
 }
 
-.steps{
+.steps {
   position: relative;
   width: 55%;
   padding-top: 50px;
@@ -94,22 +120,32 @@
   flex-direction: column;
   gap: 5px;
   box-sizing: border-box;
-  color: black;
-  font-family: "Open Sans", sans-serif;
+  color: #4C3D3D;
 }
 
-.steps img{
+.steps p{
+  font-size: 20px;
+  width: 75%;
+}
+
+.steps img {
   width: 100%;
   height: 250px;
   object-fit: contain;
   object-position: left;
+  border-radius: 5px;
+}
+
+.steps button{
+  background: white;
+  border: 1px black solid;
 }
 
 /* Dark theme */
-.dark .content{
+.dark .content {
   background: #232323;
 }
 
-.dark .steps{
+.dark .steps {
   color: white;
 }

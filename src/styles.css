@@ -3,6 +3,7 @@
 :root {
   --orange: #ff7e67;
   --white-green: #e4f9f5;
+  --green: #00b894;
 }
 
 html,
@@ -10,6 +11,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Open Sans", sans-serif;
+  scroll-behavior: smooth;
 }
 
 .btn {

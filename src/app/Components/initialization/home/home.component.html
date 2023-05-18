@@ -1,0 +1,46 @@
+<div class="presentacion">
+  <div class="icon-scroll-down" *ngIf="showIconTop">
+    <a (click)="ScrollOnTop()"><i class="bi bi-arrow-up-circle-fill"></i></a>
+  </div>
+
+  <div class="img_presentation">
+    <div class="move" data-aos="fade-up" data-aos-easing="ease-in-sine">
+      <h2 class="title" style="color: black;">Your Space of Thoughts.</h2>
+      <button class="btn btn-start">Start Creating</button>
+    </div>
+  </div>
+
+  <div class="content" id="starting">
+    <div class="content-title">
+      <h2 [align]="'center'" class="title">¿How can i<span style="color: #4C3D3D;"> Create an note?</span></h2>
+    </div>
+
+    <section>
+      <div class="list tutorial">
+        <h1 class="title" *ngFor="let step of steps" (click)="ShowStep(step)"
+          [ngClass]="{'Step-Active': step.description == selectedStep?.description}">
+          {{step.title}}
+        </h1>
+      </div>
+
+      <div class="steps">
+        <img [src]="selectedStep?.img">
+        <p>
+          {{selectedStep?.description}}
+          <br>
+          <br>
+          <button class="btn" *ngIf="selectedStep" routerLink="/login">¡Create my first note!</button>
+        </p>
+      </div>
+    </section>
+  </div>
+
+
+  <div class="img_presentation">
+    <div class="move" data-aos="fade-up" data-aos-easing="ease-in-sine">
+      <h2 class="title" style="color: black;">Your Space of Thoughts.</h2>
+      <button class="btn btn-start">Start Creating</button>
+    </div>
+  </div>
+
+</div>

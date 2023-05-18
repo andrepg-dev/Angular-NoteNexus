@@ -40,17 +40,13 @@ export class DataBaseService {
     return this.http.post<NewUser>(this.URL_REGISTER, body);
   }
 
-  login(data: Login) {
+  login(data: Login): Observable<UserInterface>{
     const body = {
       userName: data.userName,
       password: data.password,
     };
 
-    return this.http
-      .post<UserInterface>(this.URL_LOGIN, body)
-      .subscribe((res) => {
-        window.localStorage.setItem('token', res.token);
-      });
+    return this.http.post<UserInterface>(this.URL_LOGIN, body);
   }
 
   // Notes methods
