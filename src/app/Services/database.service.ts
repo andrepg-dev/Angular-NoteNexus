@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, finalize } from 'rxjs';
+import { Observable } from 'rxjs';
 import { enviroment } from 'src/environments/environment';
 import {
   Login,
@@ -9,6 +9,9 @@ import {
   UserInterface,
 } from '../Interfaces/interface';
 
+import { CookieService } from 'ngx-cookie-service';
+import { Token } from '../Interfaces/interface';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -16,13 +19,14 @@ export class DataBaseService {
   private URL_LOGIN = enviroment.URL_LOGIN;
   private URL_NOTES = enviroment.URL_NOTES;
   private URL_REGISTER = enviroment.URL_REGISTER;
-  private TOKEN = window.localStorage.getItem('token');
+  private URL_VERIFY = enviroment.URL_VERIFY;
+  private TOKEN = this.cookieSvc.get('token');
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cookieSvc: CookieService) {}
 
   // Headers
   getHeaders() {
-    this.TOKEN = window.localStorage.getItem('token');
+    this.TOKEN = this.cookieSvc.get('token');
     const headers = {
       authorization: `Bearer ${this.TOKEN}`,
     };
@@ -40,13 +44,19 @@ export class DataBaseService {
     return this.http.post<NewUser>(this.URL_REGISTER, body);
   }
 
-  login(data: Login): Observable<UserInterface>{
+  login(data: Login): Observable<UserInterface> {
     const body = {
       userName: data.userName,
       password: data.password,
     };
-
+    
     return this.http.post<UserInterface>(this.URL_LOGIN, body);
+  }
+
+  verifyToken(): Observable<Token> {
+    return this.http.get<Token>(this.URL_VERIFY, {
+      headers: this.getHeaders(),
+    });
   }
 
   // Notes methods

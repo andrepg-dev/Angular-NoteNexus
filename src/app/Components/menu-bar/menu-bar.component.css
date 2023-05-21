@@ -32,6 +32,8 @@
   cursor: pointer;
   text-decoration: none;
   transition: 0.1s;
+  display: flex;
+  align-items: center;
 }
 
 .menu-bar ul .routes:hover {
