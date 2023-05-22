@@ -21,7 +21,8 @@
   font-family: "Open Sans", sans-serif;
 }
 
-.menu-bar ul, a {
+.menu-bar ul,
+a {
   list-style: none;
   text-decoration: none;
   color: black;
@@ -39,7 +40,6 @@
 .menu-bar ul .routes:hover {
   text-decoration: underline;
 }
-
 
 .active {
   background: var(--white-green);

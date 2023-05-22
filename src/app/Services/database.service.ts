@@ -6,11 +6,11 @@ import {
   Login,
   NewUser,
   NoteInterface,
+  OwnNoteInterface,
   UserInterface,
 } from '../Interfaces/interface';
 
 import { CookieService } from 'ngx-cookie-service';
-import { Token } from '../Interfaces/interface';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +18,7 @@ import { Token } from '../Interfaces/interface';
 export class DataBaseService {
   private URL_LOGIN = enviroment.URL_LOGIN;
   private URL_NOTES = enviroment.URL_NOTES;
-  private URL_REGISTER = enviroment.URL_REGISTER;
+  private URL_USERS = enviroment.URL_USERS;
   private URL_VERIFY = enviroment.URL_VERIFY;
   private TOKEN = this.cookieSvc.get('token');
 
@@ -41,7 +41,7 @@ export class DataBaseService {
       password: form.password,
     };
 
-    return this.http.post<NewUser>(this.URL_REGISTER, body);
+    return this.http.post<NewUser>(this.URL_USERS, body);
   }
 
   login(data: Login): Observable<UserInterface> {
@@ -49,19 +49,19 @@ export class DataBaseService {
       userName: data.userName,
       password: data.password,
     };
-    
+
     return this.http.post<UserInterface>(this.URL_LOGIN, body);
   }
 
-  verifyToken(): Observable<Token> {
-    return this.http.get<Token>(this.URL_VERIFY, {
-      headers: this.getHeaders(),
+  verifyToken() {
+    return this.http.get(this.URL_VERIFY, {
+      headers: this.getHeaders(), 
     });
   }
 
   // Notes methods
-  Get(): Observable<NoteInterface[]> {
-    return this.http.get<NoteInterface[]>(this.URL_NOTES, {
+  Get(): Observable<OwnNoteInterface[]> {
+    return this.http.get<OwnNoteInterface[]>(this.URL_USERS, {
       headers: this.getHeaders(),
     });
   }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataBaseService } from 'src/app/Services/database.service';
 import { CookieService } from 'ngx-cookie-service';
+import { catchError, map, of } from 'rxjs';
 
 @Component({
   selector: 'app-authentication',
@@ -13,6 +14,14 @@ export class AuthenticationComponent implements OnInit {
   loginForm!: FormGroup;
   registerForm!: FormGroup;
 
+  ERRORS: any = {
+    invalidUser: false,
+    userTaken: false,
+    userNameTaken: false,
+  };
+
+  shwpass: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     private DataBaseService: DataBaseService,
@@ -20,14 +29,14 @@ export class AuthenticationComponent implements OnInit {
     private cookieSvc: CookieService
   ) {
     this.loginForm = this.fb.group({
-      userName: ['Blaze', [Validators.required, Validators.minLength(3)]],
-      password: ['mypassword', [Validators.required, Validators.minLength(7)]],
+      userName: ['', [Validators.required, Validators.minLength(4)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
     });
 
     this.registerForm = this.fb.group({
-      fullname: ['', [Validators.required, Validators.minLength(3)]],
-      userName: ['', [Validators.required, Validators.minLength(3)]],
-      password: ['', [Validators.required, Validators.minLength(7)]],
+      user: ['', [Validators.required, Validators.minLength(8)]],
+      userName: ['', [Validators.required, Validators.minLength(4)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
@@ -46,21 +55,62 @@ export class AuthenticationComponent implements OnInit {
   }
 
   login() {
-    this.DataBaseService.login(this.loginForm.value).subscribe((res) => {
-      if (res.token) {
-        this.cookieSvc.set('token', res.token);
-
-        this.DataBaseService.verifyToken().subscribe((res) => {
-          this.cookieSvc.set('token', res.newToken, 15, '/');
-        });
-
-        this.navegation.navigate(['/notes']);
-      }
-    });
+    this.DataBaseService.login(this.loginForm.value)
+      .pipe(
+        map((res) => {
+          // Navegar a la pagina de notas y guardar el token en una Cookie
+          this.cookieSvc.set('token', res.token);
+          this.navegation.navigate(['/notes']);
+        }),
+        catchError((err) => {
+          if (err.error.error == 'Invalid user or password') {
+            this.ShowErrorAlert('invalidUser');
+          }
+          return of(false);
+        })
+      )
+      .subscribe();
   }
 
   register() {
-    console.log(this.registerForm.value);
-    this.registerForm.reset();
+    this.DataBaseService.NewUser(this.registerForm.value)
+      .pipe(
+        map((res) => {
+          // Navegar a la pagina de notas y guardar el token en una Cookie
+          this.cookieSvc.set('token', res.token);
+          this.navegation.navigate(['/notes']);
+        }),
+        catchError((err) => {
+          const errorMessage = err.error.error;
+
+          const errors = {
+            user: 'Error, expected `user` to be unique',
+            userNameTaken: 'Error, expected `userName` to be unique',
+          };
+
+          if (errorMessage.includes(errors.userNameTaken)) {
+            this.ShowErrorAlert('userNameTaken');
+          }
+          if (errorMessage.includes(errors.user)) {
+            this.ShowErrorAlert('userTaken');
+          }
+          return of(false);
+        })
+      )
+      .subscribe();
+  }
+
+  ShowErrorAlert(variableToUpdate: string) {
+    this.ERRORS[variableToUpdate] = true;
+
+    setTimeout(() => {
+      this.ERRORS[variableToUpdate] = false;
+    }, 4000);
+  }
+
+  ShowPassword(input: HTMLInputElement) {
+    this.shwpass = !this.shwpass; 
+
+    input.type = this.shwpass ? 'text' : 'password';
   }
 }

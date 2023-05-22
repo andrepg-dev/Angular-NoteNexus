@@ -9,9 +9,19 @@
           <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
         </div>
         <span>or use your email for registration</span>
-        <input type="text" placeholder="Full Name" formControlName="fullname" required />
+        <input type="text" placeholder="Full Name" formControlName="user" required />
+        <div class="alert alert-danger" *ngIf="ERRORS.userTaken"><i class="bi bi-exclamation-circle"></i> User taken
+        </div>
         <input type="email" placeholder="UserName" formControlName="userName" required />
-        <input type="password" placeholder="Password" formControlName="password" required />
+        <div class="alert alert-danger" *ngIf="ERRORS.userNameTaken"><i class="bi bi-exclamation-circle"></i> Username
+          Taken</div>
+        <!-- Input type password -->
+        <div style="position: relative; width: 100%;">
+          <input type="password" placeholder="Password" formControlName="password" required #passwordRegister />
+          <i [ngClass]="{'bi bi-eye-fill': shwpass, 'bi bi-eye' : !shwpass}"
+            style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; cursor: pointer; z-index: 10;"
+            (click)="ShowPassword(passwordRegister)"></i>
+        </div>
         <button type="submit" [disabled]="!registerForm.valid">Sign Up</button>
       </form>
     </div>
@@ -25,7 +35,15 @@
         </div>
         <span>or use your account</span>
         <input type="text" placeholder="UserName" formControlName="userName" required />
-        <input type="password" placeholder="Password" formControlName="password" required />
+        <div style="position: relative; width: 100%;">
+          <input type="password" placeholder="Password" formControlName="password" required #passwordLogin />
+          <i [ngClass]="{'bi bi-eye-fill': shwpass, 'bi bi-eye' : !shwpass}"
+            style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; cursor: pointer; z-index: 10;"
+            (click)="ShowPassword(passwordLogin)"></i>
+        </div>
+
+        <div class="alert alert-danger" *ngIf="ERRORS.invalidUser"><i class="bi bi-exclamation-circle"></i> Invalid user
+          or password</div>
         <a routerLink="/register">Forgot your password?</a>
         <button type="submit" [disabled]="!loginForm.valid">Sign In</button>
       </form>

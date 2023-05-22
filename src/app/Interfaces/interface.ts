@@ -9,13 +9,25 @@ export interface NoteInterface {
   content: string;
   date: string;
   important: boolean;
-  user: any;
+  user: {
+    _id: string;
+    username: string;
+    user: string;
+  };
 }
 
 export interface OwnNoteInterface {
-  _id: string;
-  user: string;
+  _id:      string;
   userName: string;
+  user:     string;
+  notes:    Note[];
+}
+
+export interface Note {
+  _id:       string;
+  content:   string;
+  important: boolean;
+  date:      string;
 }
 
 export interface NewUser {
@@ -23,13 +35,10 @@ export interface NewUser {
   user: string;
   userName: string;
   password: string;
+  token: string;
 }
 
 export interface Login {
   userName: string;
   password: string;
-}
-
-export interface Token {
-  newToken: string;
 }
