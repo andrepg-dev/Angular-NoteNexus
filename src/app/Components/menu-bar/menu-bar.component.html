@@ -1,18 +1,9 @@
 <!-- NoteNexus -->
-<section class="menu-bar">
+<section class="menu-bar" [ngStyle]="estilos">
   <ul class="logo">
     <img class="img" src="../../../assets/logo.svg" alt="Captura tus ideas en un santuario digital.">
     <h1 class="logotipo">NoteNexus</h1>
   </ul>
-  <ul>
-    <a class="routes" routerLink="/">Home</a>
-    <a class="routes" href="#starting">How to start</a>
-    <a class="routes" routerLink="/authentication">Login</a>
 
-    <div class="icons">
-      <i class="bi bi-brightness-high-fill" style="color: #C07F00;"></i>
-      <a href="http://github.com/Andreponce3322" target="_blank"><i class="bi bi-github"></i></a>
-      <a href="https://www.linkedin.com/in/andre-ponce-242498181/" target="_blank" style="color: #146C94;"><i class="bi bi-linkedin"></i></a>
-    </div>
-  </ul>
+  <ng-content></ng-content>
 </section>

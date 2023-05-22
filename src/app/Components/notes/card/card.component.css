@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+.conteiner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.card {
+  width: 220px;
+  min-height: 50px;
+  padding: 12px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 1px #212A3E;
+  transition: 0.1s linear;
+}
+
+.card:hover{
+  box-shadow: 0px 0px 3px #212A3E;
+}
+
+.card span{
+  z-index: 1;
+  text-align: center;
+}
+
+.add{
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.432);
+}
+
+.add:hover{
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.632);
+}

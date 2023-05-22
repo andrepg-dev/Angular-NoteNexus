@@ -1,20 +1,32 @@
 <!-- NoteNexus -->
-<section class="menu-bar">
-  <ul class="logo">
-    <img class="img" src="../../../assets/logo.svg" alt="Captura tus ideas en un santuario digital.">
-    <h1 class="logotipo">NoteNexus</h1>
-  </ul>
-
+<app-menu-bar [estilos]="{'position': 'relative', 'box-shadow': '0px 0px 2px gray'}">
   <ul class="buscador">
     <i class="bi bi-search"></i>
     <input class="input" name="text" placeholder="Buscar" type="search">
   </ul>
-
   <ul>
     <div class="perfil">
       <i class="bi bi-bookmark-fill"></i>
-      <img src="https://fondosmil.com/fondo/57578.jpg" alt="" srcset="">
+      <img src="https://fondosmil.com/fondo/57578.jpg">
     </div>
   </ul>
+</app-menu-bar>
+<div class="notes">
+  <app-sidebar-menu></app-sidebar-menu>
 
-</section>
+  <div class="conteiner-notes">
+
+    <div class="create-note">
+
+      <div class="join">
+        <span>Crear una nueva nota...</span>
+      </div>
+
+      <form>
+
+      </form>
+    </div>
+
+    <app-card [Notes]="UserNotes"></app-card>
+  </div>
+</div>

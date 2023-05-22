@@ -6,7 +6,6 @@ import { AuthenticationComponent } from './Components/initialization/authenticat
 import { HomeComponent } from './Components/initialization/home/home.component';
 import { InitializationComponent } from './Components/initialization/initialization.component';
 import { ServicesComponent } from './Components/initialization/services/services.component';
-import { MenuBarComponent } from './Components/menu-bar/menu-bar.component';
 import { AppComponent } from './app.component';
 
 // HTTP Client
@@ -18,12 +17,12 @@ import { RoutingModule } from './routing/routing.module';
 
 // Cookie service
 import { CookieService } from 'ngx-cookie-service';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    MenuBarComponent,
     AuthenticationComponent,
     ServicesComponent,
     InitializationComponent,
@@ -33,6 +32,7 @@ import { CookieService } from 'ngx-cookie-service';
     HttpClientModule,
     ReactiveFormsModule,
     RoutingModule,
+    SharedModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],

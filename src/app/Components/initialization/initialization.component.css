@@ -1,0 +1,45 @@
+ul {
+  display: inline-flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+ul,
+a {
+  list-style: none;
+  text-decoration: none;
+  color: black;
+}
+
+ul .routes {
+  padding: 1.3rem 1.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.1s;
+  display: flex;
+  align-items: center;
+}
+
+ul .routes:hover {
+  text-decoration: underline;
+}
+
+.icons {
+  padding: 1.3rem 1.3rem 1rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icons i {
+  font-size: 20px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.icons i:hover {
+  filter: brightness(0.8);
+}
