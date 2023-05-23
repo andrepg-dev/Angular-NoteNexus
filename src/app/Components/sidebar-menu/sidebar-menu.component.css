@@ -1,20 +1,21 @@
-*{
+* {
   box-sizing: border-box;
 }
 
-a{
+a {
   text-decoration: none;
-  color: black;
+  color: #212a3e;
 }
 
-nav{
+nav {
   position: relative;
   width: 250px;
   height: 100%;
   padding: 20px 0px;
+  box-shadow: 1px 0 5px -2px #888;
 }
 
-nav ul{
+nav ul {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -23,7 +24,7 @@ nav ul{
   gap: 5px;
 }
 
-nav ul a{
+nav ul a {
   width: 100%;
   padding: 15px;
   cursor: pointer;
@@ -32,6 +33,11 @@ nav ul a{
   gap: 10px;
 }
 
-nav ul a:hover{
-  background: var(--green);
+.active {
+  background: #a4d0a4;
+  color: #fff8d6;
+}
+
+nav ul a:hover:not(.active) {
+  background: rgba(0, 0, 0, 0.11);
 }

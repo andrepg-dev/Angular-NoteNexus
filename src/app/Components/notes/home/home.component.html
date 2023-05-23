@@ -1,0 +1,40 @@
+<div class="conteiner-notes">
+  <div class="create-note">
+    <div class="join" (click)="ShowForm()" [ngClass]="{'start-creating':showForm}">
+
+      <form [formGroup]="FormTitleContent" (ngSubmit)="Send()">
+        <section class="title-content-form">
+          <input style="padding-bottom: 20px;" type="text" placeholder="Titulo" *ngIf="showForm"
+            formControlName="title">
+          <textarea rows='1' placeholder='Agregar una nueva nota...' formControlName="content"></textarea>
+        </section>
+
+        <section class="buttons-checks" *ngIf="showForm" (ngSubmit)="Send()">
+          <div style="display: flex; gap: 15px;">
+            <div class="check">
+              <div class="cntr">
+                <input type="checkbox" id="cbx1" class="hidden-xs-up" formControlName="important">
+                <label for="cbx1" class="cbx"></label>
+              </div>
+              <span>Importante</span>
+            </div>
+
+            <div class="check">
+              <div class="cntr">
+                <input type="checkbox" id="cbx2" class="hidden-xs-up" formControlName="favorite">
+                <label for="cbx2" class="cbx"></label>
+              </div>
+              <span>Favoritos</span>
+            </div>
+          </div>
+
+          <button class="save-button" [disabled]="FormTitleContent.invalid" type="submit">Save</button>
+        </section>
+
+      </form>
+
+    </div>
+  </div>
+
+  <app-card [Notes]="UserNotes"></app-card>
+</div>
