@@ -1,32 +1,36 @@
-* {
-  box-sizing: border-box;
-}
-
-.conteiner {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-auto-rows: minmax(50px, auto);
+  gap: 15px;
+  padding: 20px;
+  padding-bottom: 100px;
 }
 
 .card {
-  width: 220px;
-  min-height: 50px;
+  max-width: 320px;
+  position: relative;
   padding: 12px;
   border-radius: 5px;
-  box-shadow: 0px 0px 1px #212A3E;
+  box-shadow: 0px 0px 1px #212a3e;
   transition: 0.1s linear;
+  align-self: flex-start;
 }
 
-.card:hover{
-  box-shadow: 0px 0px 3px #212A3E;
+.card p {
+  word-wrap: break-word;
 }
 
-.card span{
+.card:hover {
+  box-shadow: 0px 0px 3px #212a3e;
+}
+
+.card span {
   z-index: 1;
   text-align: center;
 }
 
-.add{
+.add {
   text-align: center;
   display: flex;
   align-items: center;
@@ -34,6 +38,37 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.432);
 }
 
-.add:hover{
+.add:hover {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.632);
+}
+
+.icons{
+  display: flex;
+  gap: 6px;
+}
+
+.bi-heart-fill {
+  color: red;
+}
+
+.bi-star-fill {
+  color: yellow;
+}
+
+.card:hover .bi-trash-fill{
+  opacity: 0.5;
+}
+
+.bi-trash-fill{
+  opacity: 0;
+  position: absolute;
+  transition: 0.3s;
+  top: 5px;
+  right: 5px;
+  color: red;
+  cursor: pointer;
+}
+
+.bi-trash-fill:hover{
+  opacity: 1 !important;
 }

@@ -7,8 +7,10 @@ export interface UserInterface {
 export interface NoteInterface {
   _id: string;
   content: string;
+  title: string;
   date: string;
   important: boolean;
+  favorite: boolean;
   user: {
     _id: string;
     username: string;
@@ -17,17 +19,19 @@ export interface NoteInterface {
 }
 
 export interface OwnNoteInterface {
-  _id:      string;
+  _id: string;
   userName: string;
-  user:     string;
-  notes:    Note[];
+  user: string;
+  notes: Note[];
 }
 
 export interface Note {
-  _id:       string;
-  content:   string;
+  _id: string;
+  content: string;
+  title: string;
+  favorite: boolean;
   important: boolean;
-  date:      string;
+  date: string;
 }
 
 export interface NewUser {

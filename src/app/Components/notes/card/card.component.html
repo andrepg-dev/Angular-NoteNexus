@@ -1,6 +1,13 @@
-<div class="conteiner">
-
+<div class="container">
   <div class="card" *ngFor="let note of Notes">
-    <p>{{note.content}}</p>
+    <p *ngIf="note.title">{{note.title}}</p>
+    <p style="font-size: 15px;">{{note.content}}</p>
+
+    <i class="bi bi-trash-fill" (click)="delete(note)"></i>
+
+    <div class="icons">
+      <i class="bi bi-heart-fill" *ngIf="note.important"></i>
+      <i class="bi bi-star-fill" *ngIf="note.favorite"></i>
+    </div>
   </div>
 </div>

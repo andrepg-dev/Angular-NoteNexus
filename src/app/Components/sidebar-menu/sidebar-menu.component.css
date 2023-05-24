@@ -13,6 +13,7 @@ nav {
   height: 100%;
   padding: 20px 0px;
   box-shadow: 1px 0 5px -2px #888;
+  user-select: none;
 }
 
 nav ul {

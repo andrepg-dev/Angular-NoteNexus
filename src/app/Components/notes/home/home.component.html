@@ -2,14 +2,14 @@
   <div class="create-note">
     <div class="join" (click)="ShowForm()" [ngClass]="{'start-creating':showForm}">
 
-      <form [formGroup]="FormTitleContent" (ngSubmit)="Send()">
+      <form [formGroup]="FormTitleContent" (ngSubmit)="SaveNote()">
         <section class="title-content-form">
           <input style="padding-bottom: 20px;" type="text" placeholder="Titulo" *ngIf="showForm"
             formControlName="title">
           <textarea rows='1' placeholder='Agregar una nueva nota...' formControlName="content"></textarea>
         </section>
 
-        <section class="buttons-checks" *ngIf="showForm" (ngSubmit)="Send()">
+        <section class="buttons-checks" *ngIf="showForm" (ngSubmit)="SaveNote()">
           <div style="display: flex; gap: 15px;">
             <div class="check">
               <div class="cntr">
@@ -30,11 +30,9 @@
 
           <button class="save-button" [disabled]="FormTitleContent.invalid" type="submit">Save</button>
         </section>
-
       </form>
 
     </div>
   </div>
-
   <app-card [Notes]="UserNotes"></app-card>
 </div>

@@ -2,17 +2,16 @@
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 20px;
   overflow: auto;
 }
 
 .create-note {
   width: 100%;
-  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s;
+  margin-top: 20px;
 }
 
 .join {
@@ -88,9 +87,6 @@ textarea::-webkit-scrollbar-thumb {
 .save-button:disabled{
   opacity: 0.5;
   cursor: auto;
-}
-
-.save-button:hover{
 }
 
 /* Check Box Button */

@@ -55,7 +55,7 @@ export class DataBaseService {
 
   verifyToken() {
     return this.http.get(this.URL_VERIFY, {
-      headers: this.getHeaders(), 
+      headers: this.getHeaders(),
     });
   }
 
@@ -68,8 +68,10 @@ export class DataBaseService {
 
   Post(form: NoteInterface): Observable<NoteInterface> {
     const body = {
+      title: form.title,
       content: form.content,
       important: form.important,
+      favorite: form.favorite,
     };
 
     return this.http.post<NoteInterface>(this.URL_NOTES, body, {

@@ -8,11 +8,9 @@ import { DataBaseService } from 'src/app/Services/database.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
   FormTitleContent!: FormGroup;
 
   constructor(private DBS: DataBaseService, private fb: FormBuilder) {
-
     this.FormTitleContent = this.fb.group({
       title: [''],
       content: ['', [Validators.required]],
@@ -61,12 +59,15 @@ export class HomeComponent implements OnInit {
     this.showForm = true;
   }
 
-  Send(){
+  SaveNote() {
+    // Restarting height of textarea
     const textTarea = document.querySelector('textarea') as HTMLTextAreaElement;
     textTarea.style.height = 'auto';
 
-    console.log(this.FormTitleContent.value);
-    this.FormTitleContent.reset();
+    this.DBS.Post(this.FormTitleContent.value).subscribe((res) => {
+      this.UserNotes.push(res);
+      this.showForm = false;
+      this.FormTitleContent.reset();
+    });
   }
-
 }

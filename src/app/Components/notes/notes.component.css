@@ -75,7 +75,7 @@ input:hover {
 
 .notes {
   position: fixed;
-  display: flex;
+  display: inline-flex;
   height: 100%;
   width: 100%;
 }

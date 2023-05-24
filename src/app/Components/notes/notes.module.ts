@@ -7,7 +7,9 @@ import { CardComponent } from './card/card.component';
 import { HomeComponent } from './home/home.component';
 import { NotesRoutingModule } from './notes-routing.module';
 import { NotesComponent } from './notes.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FavoritesComponent } from './favorites/favorites.component';
+import { TrashComponent } from './trash/trash.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     SidebarMenuComponent,
     CardComponent,
     HomeComponent,
+    FavoritesComponent,
+    TrashComponent,
   ],
-  imports: [CommonModule, NotesRoutingModule, SharedModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    NotesRoutingModule,
+    SharedModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
 })
 export class NotesModule {}

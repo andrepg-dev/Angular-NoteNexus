@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import * as AOS from 'aos';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +6,7 @@ import * as AOS from 'aos';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  steps = [
+  public steps = [
     {
       title: 'Registra tu cuenta',
       description:
@@ -30,6 +29,8 @@ export class HomeComponent implements OnInit {
 
   selectedStep: any = this.steps[0];
 
+  constructor() {}
+
   ShowStep(step: Object) {
     this.selectedStep = step;
   }
@@ -43,16 +44,14 @@ export class HomeComponent implements OnInit {
   }
 
   showIconTop: boolean = false;
-  
-  ngOnInit(): void {
-    AOS.init();
 
+  ngOnInit(): void {
     const starting: HTMLElement = document.getElementById('starting')!;
 
     window.addEventListener('scroll', () => {
       if (window.scrollY > starting.offsetTop) {
         this.showIconTop = true;
-      }else{
+      } else {
         this.showIconTop = false;
       }
     });
