@@ -60,7 +60,7 @@ export class AuthenticationComponent implements OnInit {
         map((res) => {
           // Navegar a la pagina de notas y guardar el token en una Cookie
           this.cookieSvc.set('token', res.token);
-          this.navegation.navigate(['/notes']);
+          this.navegation.navigate(['/notes/home']);
         }),
         catchError((err) => {
           if (err.error.error == 'Invalid user or password') {
@@ -78,7 +78,7 @@ export class AuthenticationComponent implements OnInit {
         map((res) => {
           // Navegar a la pagina de notas y guardar el token en una Cookie
           this.cookieSvc.set('token', res.token);
-          this.navegation.navigate(['/notes']);
+          this.navegation.navigate(['/notes/home']);
         }),
         catchError((err) => {
           const errorMessage = err.error.error;

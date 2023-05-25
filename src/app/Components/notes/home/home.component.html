@@ -1,5 +1,9 @@
 <div class="conteiner-notes">
   <div class="create-note">
+    <div class="filter">
+      <i class="bi bi-filter"></i>
+    </div>
+
     <div class="join" (click)="ShowForm()" [ngClass]="{'start-creating':showForm}">
 
       <form [formGroup]="FormTitleContent" (ngSubmit)="SaveNote()">
@@ -34,5 +38,5 @@
 
     </div>
   </div>
-  <app-card [Notes]="UserNotes"></app-card>
+  <app-card [Notes]="notes"></app-card>
 </div>

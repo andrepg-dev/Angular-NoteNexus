@@ -15,6 +15,7 @@
   box-shadow: 0px 0px 1px #212a3e;
   transition: 0.1s linear;
   align-self: flex-start;
+  white-space: pre-wrap;
 }
 
 .card p {
@@ -44,6 +45,7 @@
 
 .icons{
   display: flex;
+  align-items: center;
   gap: 6px;
 }
 
@@ -71,4 +73,9 @@
 
 .bi-trash-fill:hover{
   opacity: 1 !important;
+}
+
+.date{
+  font-size: 10px;
+  color: gray;
 }

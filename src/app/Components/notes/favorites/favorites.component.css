@@ -2,9 +2,24 @@
   box-sizing: border-box;
 }
 
+*::placeholder {
+  user-select: none;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #c8ccd4;
+  border-radius: 5px;
+}
+
+
 .favorites-container{
   position: relative;
   width: 100%;
   height: 100%;
   padding: 20px;
+  overflow: auto;
 }

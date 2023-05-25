@@ -4,6 +4,7 @@ import { NotesComponent } from './notes.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { HomeComponent } from './home/home.component';
 import { TrashComponent } from './trash/trash.component';
+import { HiddenComponent } from './hidden/hidden.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'favorites', component: FavoritesComponent },
       { path: 'trash', component: TrashComponent },
+      { path: 'hidden', component: HiddenComponent },
     ],
   },
 ];

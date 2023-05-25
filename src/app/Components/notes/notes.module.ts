@@ -10,6 +10,7 @@ import { NotesComponent } from './notes.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { TrashComponent } from './trash/trash.component';
+import { HiddenComponent } from './hidden/hidden.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TrashComponent } from './trash/trash.component';
     HomeComponent,
     FavoritesComponent,
     TrashComponent,
+    HiddenComponent,
   ],
   imports: [
     CommonModule,

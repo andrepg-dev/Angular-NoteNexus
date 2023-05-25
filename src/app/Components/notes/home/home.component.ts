@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataBaseService } from 'src/app/Services/database.service';
+import { ShareNotesService } from 'src/app/Services/share-notes.service';
 
 @Component({
   selector: 'app-home',
@@ -10,15 +11,24 @@ import { DataBaseService } from 'src/app/Services/database.service';
 export class HomeComponent implements OnInit {
   FormTitleContent!: FormGroup;
 
-  constructor(private DBS: DataBaseService, private fb: FormBuilder) {
+  constructor(
+    private DBS: DataBaseService,
+    private fb: FormBuilder,
+    private Notes: ShareNotesService,
+  ) {
     this.FormTitleContent = this.fb.group({
       title: [''],
       content: ['', [Validators.required]],
       important: [false],
       favorite: [false],
     });
+  }
 
-    this.getUser();
+  notes: any = [];
+  getNotes() {
+    this.Notes.notes.subscribe((data) => {
+      this.notes = data;
+    });
   }
 
   DataUser = {
@@ -27,6 +37,13 @@ export class HomeComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    // Getting data from the service
+    this.DBS.Get().subscribe((res) => {
+      this.notes = res[0].notes;
+      this.getNotes();
+    });
+
+    // Ajusting height of textarea
     const textTarea = document.querySelector('textarea') as HTMLTextAreaElement;
     const join = document.querySelector('.join') as HTMLTextAreaElement;
 
@@ -42,18 +59,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  UserNotes: any = [];
-
-  getUser() {
-    this.DBS.Get().subscribe((data) => {
-      this.DataUser.userName = data[0].userName;
-      this.DataUser.user = data[0].user;
-      data[0].notes.map((notes) => {
-        this.UserNotes.push(notes);
-      });
-    });
-  }
-
   showForm = false;
   ShowForm() {
     this.showForm = true;
@@ -65,7 +70,10 @@ export class HomeComponent implements OnInit {
     textTarea.style.height = 'auto';
 
     this.DBS.Post(this.FormTitleContent.value).subscribe((res) => {
-      this.UserNotes.push(res);
+      // Sending data to the service
+      this.notes.push(res);
+      this.Notes.notes.emit(this.notes);
+      
       this.showForm = false;
       this.FormTitleContent.reset();
     });

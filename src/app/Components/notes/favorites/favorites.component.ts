@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataBaseService } from 'src/app/Services/database.service';
+import { ShareDataUserService } from '../share-data-user.service';
 
 @Component({
   selector: 'app-favorites',
@@ -9,7 +10,10 @@ import { DataBaseService } from 'src/app/Services/database.service';
 export class FavoritesComponent {
   FavoriteNotes: any = [];
 
-  constructor(private DTB: DataBaseService) {
+  constructor(
+    private DTB: DataBaseService,
+    private ShareDataUser: ShareDataUserService
+  ) {
     this.Get();
   }
 

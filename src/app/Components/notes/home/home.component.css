@@ -6,6 +6,7 @@
 }
 
 .create-note {
+  position: relative;
   width: 100%;
   display: flex;
   align-items: center;
@@ -192,4 +193,29 @@ textarea::-webkit-scrollbar-thumb {
 
 .hidden-xs-up {
   display: none !important;
+}
+
+.filter{
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  right: 20px;
+  top: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #23232311;
+  cursor: pointer;
+}
+
+
+.bi-filter{
+  position: absolute;
+  font-size: 30px;
+  color: black;
+}
+
+.filter:hover{
+  box-shadow: 0px 0px 1px #23232385;
 }

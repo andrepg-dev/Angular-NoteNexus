@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ShareDataUserService {
-
-  constructor() { }
-}
+  @Output() Compatir_ER_Notas: EventEmitter<any> = new EventEmitter();
+ }

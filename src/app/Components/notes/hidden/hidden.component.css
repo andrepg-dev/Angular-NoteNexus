@@ -1,14 +1,14 @@
 * {
   box-sizing: border-box;
 }
-.trash-container {
+.lock-container {
   position: relative;
   width: 100%;
   height: 100%;
   padding: 20px;
 }
 
-.trash {
+.lock {
   position: absolute;
   left: 0;
   top: 0;

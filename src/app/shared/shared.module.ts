@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { MenuBarComponent } from '../Components/menu-bar/menu-bar.component';
 
