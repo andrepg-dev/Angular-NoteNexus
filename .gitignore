@@ -29,7 +29,7 @@ yarn-error.log
 .history/*
 
 #Enviroment variables
-./src/enviroments/enviroment.ts
+/src/enviroments/**
 
 # Miscellaneous
 /.angular/cache
