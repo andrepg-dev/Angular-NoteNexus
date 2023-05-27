@@ -11,7 +11,6 @@ nav {
   position: relative;
   width: 250px;
   height: 100%;
-  padding: 20px 0px;
   box-shadow: 1px 0 5px -2px #888;
   user-select: none;
 }
@@ -31,7 +30,25 @@ nav ul a {
   cursor: pointer;
   border-radius: 0px 50px 50px 0px;
   display: flex;
-  gap: 10px;
+  gap: 19px;
+}
+
+.showMenu{
+  width: 100%;
+  padding: 20px 15px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.bi-list{
+  width: 100%;
+  font-size: 20px;
+  color: black;
+}
+
+.hidde{
+  overflow: hidden;
+  width: 50px !important;
 }
 
 .active {
@@ -41,4 +58,16 @@ nav ul a {
 
 nav ul a:hover:not(.active) {
   background: rgba(0, 0, 0, 0.11);
+}
+
+@media only screen and (max-width: 765px) {
+  nav {
+    width: 200px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  nav {
+    width: 160px;
+  }
 }

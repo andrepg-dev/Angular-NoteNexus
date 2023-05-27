@@ -79,3 +79,9 @@ a {
 .icons i:hover {
   filter: brightness(0.8);
 }
+
+@media screen and (max-width: 765px) {
+  .menu-bar .logo {
+    display: none;
+  }
+}

@@ -10,11 +10,14 @@ import { ShareNotesService } from 'src/app/Services/share-notes.service';
 })
 export class HomeComponent implements OnInit {
   FormTitleContent!: FormGroup;
+  notes: any = [];
+  showForm = false;
+  sortAZ = false;
 
   constructor(
     private DBS: DataBaseService,
     private fb: FormBuilder,
-    private Notes: ShareNotesService,
+    private Notes: ShareNotesService
   ) {
     this.FormTitleContent = this.fb.group({
       title: [''],
@@ -23,18 +26,6 @@ export class HomeComponent implements OnInit {
       favorite: [false],
     });
   }
-
-  notes: any = [];
-  getNotes() {
-    this.Notes.notes.subscribe((data) => {
-      this.notes = data;
-    });
-  }
-
-  DataUser = {
-    userName: '',
-    user: '',
-  };
 
   ngOnInit(): void {
     // Getting data from the service
@@ -59,7 +50,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  showForm = false;
+  getNotes() {
+    this.Notes.notes.subscribe((data) => {
+      this.notes = data;
+    });
+  }
+
   ShowForm() {
     this.showForm = true;
   }
@@ -73,9 +69,15 @@ export class HomeComponent implements OnInit {
       // Sending data to the service
       this.notes.push(res);
       this.Notes.notes.emit(this.notes);
-      
+
       this.showForm = false;
       this.FormTitleContent.reset();
     });
+  }
+
+  Filter() {
+    this.sortAZ = !this.sortAZ;
+    // Ordenar notas de mayor a menor con letras alfabeticas de A a Z
+
   }
 }

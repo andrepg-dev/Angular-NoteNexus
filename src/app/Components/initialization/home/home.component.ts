@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
       img: '../../../../assets/step2.png',
     },
     {
-      title: 'Crea una nota',
+      title: '¡Empieza a crear!',
       description:
         ' Una vez que hayas iniciado sesión, podrás agregar notas y mantener tus ideas organizadas.',
       img: 'https://img.freepik.com/vector-gratis/nota-papel-sobre-fondo-memphis_53876-99284.jpg?w=2000',

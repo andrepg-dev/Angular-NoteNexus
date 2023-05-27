@@ -71,8 +71,7 @@ textarea::-webkit-scrollbar-thumb {
   border-radius: 5px;
 }
 
-
-.save-button{
+.save-button {
   position: relative;
   top: -1px;
   box-sizing: border-box;
@@ -85,7 +84,7 @@ textarea::-webkit-scrollbar-thumb {
   color: white;
 }
 
-.save-button:disabled{
+.save-button:disabled {
   opacity: 0.5;
   cursor: auto;
 }
@@ -195,7 +194,7 @@ textarea::-webkit-scrollbar-thumb {
   display: none !important;
 }
 
-.filter{
+.filter {
   position: absolute;
   width: 45px;
   height: 45px;
@@ -209,13 +208,27 @@ textarea::-webkit-scrollbar-thumb {
   cursor: pointer;
 }
 
-
-.bi-filter{
+.bi-sort-alpha-down,
+.bi-sort-alpha-up-alt {
   position: absolute;
-  font-size: 30px;
-  color: black;
+  font-size: 21px;
 }
 
-.filter:hover{
+.filter:hover {
   box-shadow: 0px 0px 1px #23232385;
+}
+
+@media screen and (max-width: 765px) {
+  .join {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 615px) {
+  .filter {
+    display: none;
+  }
+  .join {
+    width: 85%;
+  }
 }

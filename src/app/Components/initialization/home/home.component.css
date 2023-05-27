@@ -42,7 +42,7 @@
   display: grid;
   place-items: center;
   scroll-behavior: smooth;
-  color: #4C3D3D;
+  color: #4c3d3d;
 }
 
 .icon-scroll-down:hover {
@@ -69,16 +69,6 @@
   width: fit-content;
   letter-spacing: 3px;
 }
-/* 
-.content-title .title::after{
-  content: '';
-  width: 100%;
-  height: 1px;
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  background: black;
-} */
 
 .content section {
   width: 100%;
@@ -109,7 +99,7 @@
 }
 
 .Step-Active {
-  color: #4C3D3D;
+  color: #4c3d3d;
 }
 
 .steps {
@@ -120,10 +110,10 @@
   flex-direction: column;
   gap: 5px;
   box-sizing: border-box;
-  color: #4C3D3D;
+  color: #4c3d3d;
 }
 
-.steps p{
+.steps p {
   font-size: 20px;
   width: 75%;
 }
@@ -136,7 +126,7 @@
   border-radius: 5px;
 }
 
-.steps button{
+.steps button {
   background: white;
   border: 1px black solid;
 }

@@ -1,4 +1,8 @@
-<nav>
+<nav [ngClass]="{'hidde': !boolean}">
+  <div class="showMenu" (click)="showMenu()">
+    <i class="bi bi-list"></i>
+  </div>
+
   <ul>
     <a routerLink="/notes/home" routerLinkActive="active"><i class="bi bi-house-fill"></i> Home</a>
     <a routerLink="/notes/trash" routerLinkActive="active"><i class="bi bi-trash-fill"></i> Trash</a>

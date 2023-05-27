@@ -10,7 +10,7 @@ import { ShareNotesService } from 'src/app/Services/share-notes.service';
 })
 export class NotesComponent {
   constructor(
-    private DBS: DataBaseService,
+    private DTB: DataBaseService,
     private shareNotes: ShareNotesService
   ) {
     this.GetNotes();
@@ -20,14 +20,14 @@ export class NotesComponent {
   notes: any = [];
 
   GetNotes() {
-    this.DBS.Get().subscribe((data) => {
-      this.notes = data[0].notes;
-      this.shareNotes.notes.emit(data[0].notes);
+    this.DTB.Get().subscribe((data) => {
+      const allNotes = data[0].notes;
+      this.notes = allNotes;
+      this.shareNotes.notes.emit(allNotes);
     });
   }
 
   Search(array: NoteInterface[], args: string) {
-
     if (!args) {
       return array;
     }

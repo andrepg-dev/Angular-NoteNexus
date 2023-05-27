@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DataBaseService } from 'src/app/Services/database.service';
 import { ShareDataUserService } from '../share-data-user.service';
+import { ShareNotesService } from 'src/app/Services/share-notes.service';
 
 @Component({
   selector: 'app-favorites',
@@ -12,7 +13,7 @@ export class FavoritesComponent {
 
   constructor(
     private DTB: DataBaseService,
-    private ShareDataUser: ShareDataUserService
+    private shareNotes: ShareNotesService
   ) {
     this.Get();
   }
@@ -20,14 +21,22 @@ export class FavoritesComponent {
   // Get all favorite notes
 
   Get() {
-    this.DTB.Get().subscribe((res) => {
-      res[0].notes.map((notes) => {
-        const allNotes = notes;
+    this.shareNotes.notes.subscribe((notes) => {
+      let result: string[] = [];
 
-        if (allNotes.favorite == true) {
-          this.FavoriteNotes.push(notes);
+      notes.map((value: any) => {
+        if (value.favorite == true) {
+          result = [...result, value];
         }
       });
+
+      this.FavoriteNotes = result;
+    });
+
+    this.DTB.Get().subscribe((notes) => {
+      const allNotes = notes[0].notes;
+
+      this.shareNotes.notes.emit(allNotes);
     });
   }
 }

@@ -23,9 +23,9 @@ export class CardComponent {
 
   delete(noteSelected: NoteInterface) {
     if (confirm('Estas seguro que quieres eliminar esta nota?')) {
-      this.DBS.Delete(noteSelected._id).subscribe(()=>{
+      this.DBS.Delete(noteSelected._id).subscribe(() => {
         location.reload();
-      })
+      });
     }
   }
 }

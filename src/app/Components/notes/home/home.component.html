@@ -1,7 +1,8 @@
 <div class="conteiner-notes">
   <div class="create-note">
-    <div class="filter">
-      <i class="bi bi-filter"></i>
+    <div class="filter" (click)="Filter()">
+      <i class="bi bi-sort-alpha-down" *ngIf="sortAZ"></i>
+      <i class="bi bi-sort-alpha-up-alt" *ngIf="!sortAZ"></i>
     </div>
 
     <div class="join" (click)="ShowForm()" [ngClass]="{'start-creating':showForm}">
