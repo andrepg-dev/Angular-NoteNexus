@@ -6,6 +6,9 @@
 /out-tsc
 /bazel-out
 
+# Project files
+/src/enviroments/**
+
 # Node
 /node_modules
 npm-debug.log
@@ -27,9 +30,6 @@ yarn-error.log
 !.vscode/launch.json
 !.vscode/extensions.json
 .history/*
-
-#Enviroment variables
-/src/enviroments/**
 
 # Miscellaneous
 /.angular/cache
