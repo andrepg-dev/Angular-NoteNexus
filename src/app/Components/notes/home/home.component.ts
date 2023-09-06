@@ -12,7 +12,6 @@ export class HomeComponent implements OnInit {
   FormTitleContent!: FormGroup;
   notes: any = [];
   showForm = false;
-  sortAZ = false;
 
   constructor(
     private DBS: DataBaseService,
@@ -29,8 +28,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     // Getting data from the service
-    this.DBS.Get().subscribe((res) => {
+    this.DBS.Get().subscribe((res: { notes: any }[]) => {
       this.notes = res[0].notes;
+      // Sending data to the service
+      this.Notes.notes.emit(this.notes);
+
+      // Sorting notes by date
+      this.sortNotesByDate();
+      // Getting data from the service
       this.getNotes();
     });
 
@@ -51,7 +56,7 @@ export class HomeComponent implements OnInit {
   }
 
   getNotes() {
-    this.Notes.notes.subscribe((data) => {
+    this.Notes.notes.subscribe((data: any) => {
       this.notes = data;
     });
   }
@@ -65,9 +70,9 @@ export class HomeComponent implements OnInit {
     const textTarea = document.querySelector('textarea') as HTMLTextAreaElement;
     textTarea.style.height = 'auto';
 
-    this.DBS.Post(this.FormTitleContent.value).subscribe((res) => {
+    this.DBS.Post(this.FormTitleContent.value).subscribe((res: any) => {
       // Sending data to the service
-      this.notes.push(res);
+      this.notes.unshift(res);
       this.Notes.notes.emit(this.notes);
 
       this.showForm = false;
@@ -75,9 +80,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  Filter() {
-    this.sortAZ = !this.sortAZ;
-    // Ordenar notas de mayor a menor con letras alfabeticas de A a Z
+  sortNotesByDate() {
+    this.notes.sort((a: any, b: any) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
 
+      return dateB.getTime() - dateA.getTime();
+    });
   }
 }

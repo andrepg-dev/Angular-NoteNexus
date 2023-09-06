@@ -1,17 +1,12 @@
 <div class="conteiner-notes">
   <div class="create-note">
-    <div class="filter" (click)="Filter()">
-      <i class="bi bi-sort-alpha-down" *ngIf="sortAZ"></i>
-      <i class="bi bi-sort-alpha-up-alt" *ngIf="!sortAZ"></i>
-    </div>
-
     <div class="join" (click)="ShowForm()" [ngClass]="{'start-creating':showForm}">
 
       <form [formGroup]="FormTitleContent" (ngSubmit)="SaveNote()">
         <section class="title-content-form">
-          <input style="padding-bottom: 20px;" type="text" placeholder="Titulo" *ngIf="showForm"
+          <input style="padding-bottom: 20px;" type="text" placeholder="Title" *ngIf="showForm"
             formControlName="title">
-          <textarea rows='1' placeholder='Agregar una nueva nota...' formControlName="content"></textarea>
+          <textarea rows='1' placeholder='Write a new note ✍🏼' formControlName="content"></textarea>
         </section>
 
         <section class="buttons-checks" *ngIf="showForm" (ngSubmit)="SaveNote()">

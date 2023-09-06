@@ -2,7 +2,7 @@
 <app-menu-bar [estilos]="{'position': 'relative', 'box-shadow': '0px 0px 2px gray'}">
   <ul class="buscador">
     <i class="bi bi-search"></i>
-    <input class="input" name="text" placeholder="Buscar" type="search" [(ngModel)]="search" (keyup)="Search(notes, search)">
+    <input class="input" name="text" placeholder="Search" type="search" [(ngModel)]="search" (keyup)="Search(notes, search)">
   </ul>
   <ul>
     <div class="perfil">
@@ -11,6 +11,9 @@
     </div>
   </ul>
 </app-menu-bar>
+
+
+
 <div class="notes">
   <app-sidebar-menu></app-sidebar-menu>
   <div style="width: 100%;">

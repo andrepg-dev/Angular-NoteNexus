@@ -8,6 +8,7 @@ import { DataBaseService } from 'src/app/Services/database.service';
   styleUrls: ['./card.component.css'],
 })
 export class CardComponent {
+
   @Input() Notes: any = [
     {
       date: String,
@@ -22,9 +23,11 @@ export class CardComponent {
   constructor(private DBS: DataBaseService) {}
 
   delete(noteSelected: NoteInterface) {
-    if (confirm('Estas seguro que quieres eliminar esta nota?')) {
+    if (confirm('¿Are you sure to delete this note?')) {
       this.DBS.Delete(noteSelected._id).subscribe(() => {
-        location.reload();
+        this.Notes = this.Notes.filter(
+          (note: NoteInterface) => note._id !== noteSelected._id
+        );
       });
     }
   }

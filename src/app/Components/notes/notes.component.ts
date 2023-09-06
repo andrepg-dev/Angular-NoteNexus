@@ -20,8 +20,8 @@ export class NotesComponent {
   notes: any = [];
 
   GetNotes() {
-    this.DTB.Get().subscribe((data) => {
-      const allNotes = data[0].notes;
+    this.DTB.Get().subscribe((data: any) => {
+      const allNotes = [...data[0].notes];
       this.notes = allNotes;
       this.shareNotes.notes.emit(allNotes);
     });
@@ -29,20 +29,28 @@ export class NotesComponent {
 
   Search(array: NoteInterface[], args: string) {
     if (!args) {
-      return array;
+      this.sortNotesByDate();
+      this.shareNotes.notes.emit(this.notes);
+      return this.notes;
     }
 
     let result: any = [];
 
     for (const value of array) {
-      if (
-        value.content.toLowerCase().indexOf(args.toLowerCase()) != -1 ||
-        value.title.toLowerCase().indexOf(args.toLowerCase()) != -1
-      ) {
+      if (value.content.indexOf(args) != -1) {
         result = [...result, value];
       }
     }
     this.shareNotes.notes.emit(result);
     return result;
+  }
+
+  sortNotesByDate() {
+    this.notes.sort((a: any, b: any) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+
+      return dateB.getTime() - dateA.getTime();
+    });
   }
 }
